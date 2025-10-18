@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lt-primary-source: #d51243;
+
+  --lt-palette-primary0: #e93d6e;
+  --lt-palette-primary10: #55031a;
+  --lt-palette-primary20: #7d0427;
+  --lt-palette-primary25: #950530;
+  --lt-palette-primary30: #ad0639;
+  --lt-palette-primary35: #c3073f;
+  --lt-palette-primary40: #d51243;
+  /* base */
+  --lt-palette-primary50: #e04261;
+  --lt-palette-primary60: #e96b81;
+  --lt-palette-primary70: #f193a1;
+  --lt-palette-primary80: #f9bbc2;
+  --lt-palette-primary90: #fde0e7;
+  --lt-palette-primary95: #fff0f3;
+  --lt-palette-primary98: #fff8f9;
+  --lt-palette-primary99: #fffbfb;
+  --lt-palette-primary100: #ffffff;
+  /* secondary */
+  --lt-palette-secondary0: #ff5722;
+  --lt-palette-secondary10: #fcf9f8;
+  --lt-palette-secondary20: #5a298b;
+  --lt-palette-secondary25: #3c3b3b;
+  --lt-palette-secondary30: #474646;
+  --lt-palette-secondary35: #535252;
+  --lt-palette-secondary40: #5f5e5e;
+  --lt-palette-secondary50: #787776;
+  --lt-palette-secondary60: #929090;
+  --lt-palette-secondary70: #adabaa;
+  --lt-palette-secondary80: #c8c6c5;
+  --lt-palette-secondary90: #e5e2e1;
+  --lt-palette-secondary95: #f3f0ef;
+  --lt-palette-secondary98: #fcf9f8;
+  --lt-palette-secondary99: #fffbfb;
+  --lt-palette-secondary100: #ffffff;
+  /* tertiary */
+  --lt-palette-tertiary0: #000000;
+  --lt-palette-tertiary10: #001f26;
+  --lt-palette-tertiary20: #023640;
+  --lt-palette-tertiary25: #13414c;
+  --lt-palette-tertiary30: #214c57;
+  --lt-palette-tertiary35: #2e5863;
+  --lt-palette-tertiary40: #3b6470;
+  --lt-palette-tertiary50: #547d89;
+  --lt-palette-tertiary60: #6d97a3;
+  --lt-palette-tertiary70: #88b2bf;
+  --lt-palette-tertiary80: #a3cdda;
+  --lt-palette-tertiary90: #beeaf7;
+  --lt-palette-tertiary95: #d9f6ff;
+  --lt-palette-tertiary98: #f1fbff;
+  --lt-palette-tertiary99: #f8fdff;
+  --lt-palette-tertiary100: #ffffff;
+
+  /* Error */
+  --lt-palette-error0: #000000;
+  --lt-palette-error10: #410002;
+  --lt-palette-error20: #690005;
+  --lt-palette-error25: #7e0007;
+  --lt-palette-error30: #93000a;
+  --lt-palette-error35: #a80710;
+  --lt-palette-error40: #ba1a1a;
+  --lt-palette-error50: #de3730;
+  --lt-palette-error60: #ff5449;
+  --lt-palette-error70: #ff897d;
+  --lt-palette-error80: #ffb4ab;
+  --lt-palette-error90: #ffdad6;
+  --lt-palette-error95: #ffedea;
+  --lt-palette-error98: #fff8f7;
+  --lt-palette-error99: #fffbff;
+  --lt-palette-error100: #ffffff;
+
+  /* Success */
+  --lt-palette-success10: #0d1d2a;
+  --lt-palette-success20: #233240;
+  --lt-palette-success25: #1b4400;
+  --lt-palette-success30: #215100;
+  --lt-palette-success35: #275e00;
+  --lt-palette-success40: #2e6c00;
+  --lt-palette-success50: #3b8800;
+  --lt-palette-success60: #50a31a;
+  --lt-palette-success70: #6abf36;
+  --lt-palette-success80: #85dc50;
+  --lt-palette-success90: #bcfbbd;
+  --lt-palette-success95: #d9fcda;
+  --lt-palette-success98: #dff7dd;
+  --lt-palette-success99: #f8ffec;
+
+  /* Neutral */
+  --lt-palette-neutral0: #000000;
+  --lt-palette-neutral10: #1c1b1f;
+  --lt-palette-neutral20: #313034;
+  --lt-palette-neutral25: #3c3b3f;
+  --lt-palette-neutral30: #47464a;
+  --lt-palette-neutral35: #535256;
+  --lt-palette-neutral40: #5f5e62;
+  --lt-palette-neutral50: #78767a;
+  --lt-palette-neutral60: #929094;
+  --lt-palette-neutral70: #adaaaf;
+  --lt-palette-neutral80: #c9c5ca;
+  --lt-palette-neutral90: #e5e1e6;
+  --lt-palette-neutral95: #f3eff4;
+  --lt-palette-neutral98: #fcf8fd;
+  --lt-palette-neutral99: #fffbff;
+  --lt-palette-neutral100: #ffffff;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+::-webkit-scrollbar-thumb {
+  /* width: 5px!important; */
+  background-color: #a0a0a0 !important;
+  border-radius: 10px !important;
+}
+
+::-webkit-scrollbar {
+  width: 4px !important;
+  height: 4px !important;
+  margin-top: 10px !important;
+  padding-top: 5px !important;
+}
