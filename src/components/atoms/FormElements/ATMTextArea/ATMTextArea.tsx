@@ -90,14 +90,14 @@ const ATMTextArea: React.FC<TextFieldProps> = ({
           } ${disabled && "opacity-60"} border  ${focused && !disabled ? "border-primary" : "border-neutral-80"
           }`}
       >
-        <label
+        {/* <label
           className={`absolute left-2 transition-all duration-200  ${focused || value
             ? "top-0 text-primary font-medium text-xs"
             : "top-1/2 transform -translate-y-1/2 text-xs text-gray-400 cursor-text"
             }  ${!isOutlined && "hidden"} `}
         >
           {label}
-        </label>
+        </label> */}
         <textarea
           key={name} // Added stable key for DOM element stability
           id={name}
@@ -114,9 +114,9 @@ const ATMTextArea: React.FC<TextFieldProps> = ({
         />
       </div>
 
-      {helperText && isValid && (
+      {/* {helperText && isValid && (
         <p className="absolute text-xs text-slate-500"> {helperText} </p>
-      )}
+      )} */}
       {/* <ErrorMessage name={name}>
         {(errorMessage) => <ATMFieldError> {errorMessage} </ATMFieldError>}
       </ErrorMessage> */}

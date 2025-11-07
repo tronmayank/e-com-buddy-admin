@@ -99,6 +99,42 @@ const navigation: (params?: {
             limit: "10",
           },
         },
+        {
+          title: "Category",
+          icon: IconUserCog,
+          path: "category",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "Coupon",
+          icon: IconUserCog,
+          path: "coupon",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "Product",
+          icon: IconUserCog,
+          path: "product",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "Order",
+          icon: IconUserCog,
+          path: "order",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
       ],
     },
   ];

@@ -38,6 +38,7 @@ type Props = {
   onBlur?: (e: any) => void;
   pageSize?: number;
   size?: Size;
+  onInputChange?: (e: string) => void
 };
 
 const styles: StylesConfig<any> = {
@@ -59,7 +60,7 @@ const ATMSelect = ({
   onChange,
   label,
   options,
-
+  onInputChange,
   valueAccessKey = "id",
   variant = "default",
   placeholder = "Select...",
@@ -84,6 +85,7 @@ const ATMSelect = ({
   isTouched = false,
   isValid = true,
 }: Props) => {
+  console.log(value, "value")
   const selectRef = useRef<any>(null);
 
   const [focused, setFocused] = useState<boolean>(false);
@@ -102,18 +104,15 @@ const ATMSelect = ({
       </ATMFieldLabel>
 
       <div
-        className={`relative rounded flex flex-col ${getHeight(size)} ${
-          isOutlined && "justify-end"
-        } ${isDisabled && "opacity-60"} border ${
-          focused && !isDisabled ? "border-primary" : "border-neutral-80"
-        }`}
+        className={`relative rounded flex flex-col ${getHeight(size)} ${isOutlined && "justify-end"
+          } ${isDisabled && "opacity-60"} border ${focused && !isDisabled ? "border-primary" : "border-neutral-80"
+          }`}
       >
         <label
-          className={`absolute left-2 transition-all duration-200 z-10000 ${
-            focused || value
-              ? "top-0 text-primary-main font-medium  text-sm"
-              : "top-1/2 transform -translate-y-1/2 text-sm text-gray-400 cursor-text"
-          }  ${!isOutlined && "hidden"} `}
+          className={`absolute left-2 transition-all duration-200 z-10000 ${focused || value
+            ? "top-0 text-primary-main font-medium  text-sm"
+            : "top-1/2 transform -translate-y-1/2 text-sm text-gray-400 cursor-text"
+            }  ${!isOutlined && "hidden"} `}
         >
           {label}
         </label>
@@ -121,13 +120,15 @@ const ATMSelect = ({
         <Select
           name={name}
           value={
-            options?.find(
-              (option: any) =>
-                option?.[valueAccessKey] ===
-                (typeof value === "string" ? value : value?.[valueAccessKey])
-            ) || null
+            value === null ? "" :
+              options?.find(
+                (option: any) =>
+                  option?.[valueAccessKey] ===
+                  (typeof value === "string" ? value : value?.[valueAccessKey])
+              ) || null
           }
           onChange={(newValue, actionMeta) => {
+            console.log("ggege", newValue)
             onChange(newValue, actionMeta);
             selectRef?.current?.focus?.(true);
           }}
@@ -168,6 +169,8 @@ const ATMSelect = ({
           defaultMenuIsOpen={false}
           menuShouldBlockScroll
           styles={styles}
+          isSearchable
+          onInputChange={onInputChange}
           isMulti={false}
           controlShouldRenderValue
           classNames={{

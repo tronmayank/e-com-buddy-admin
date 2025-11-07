@@ -7,6 +7,10 @@ import { authMiddleware } from "./middlewares/authMiddleware";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import UserSlice from "./modules/User/slice/UserSlice";
 import WebInfoSlice from "./modules/WebInfo/slice/WebInfoSlice";
+import CategorySlice from "./modules/Category/slice/CategorySlice";
+import CouponSlice from "./modules/Coupon/slice/CouponSlice";
+import ProductSlice from "./modules/Product/slice/ProductSlice";
+import OrderSlice from "./modules/Order/slice/OrderSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +18,10 @@ const store = configureStore({
     sideNavLayout: SideNavLayoutSlice,
     user: UserSlice,
     webinfo: WebInfoSlice,
+    category: CategorySlice,
+    coupon: CouponSlice,
+    product: ProductSlice,
+    order: OrderSlice,
 
     [apiSlice.reducerPath]: apiSlice.reducer,
     [fileExplorerSlice.reducerPath]: fileExplorerSlice.reducer,

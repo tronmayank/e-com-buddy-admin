@@ -10,6 +10,10 @@ import WebInfoListingWrapper from "./modules/WebInfo/screens/List/WebInfoListing
 import FaqListingWrapper from "./modules/Faq/screens/List/FaqListingWrapper";
 import TACListingWrapper from "./modules/TermsAndCondition/screens/List/TACListingWrapper";
 import PAPListingWrapper from "./modules/PrivacyAndPolicy/screens/List/PAPListingWrapper";
+import CategoryListingWrapper from "./modules/Category/screens/List/CategoryListingWrapper";
+import CouponListingWrapper from "./modules/Coupon/screens/List/CouponListingWrapper";
+import ProductListingWrapper from "./modules/Product/screens/List/ProductListingWrapper";
+import OrderListingWrapper from "./modules/Order/screens/List/OrderListingWrapper";
 
 const PageRoutes = () => {
   const deviceId = localStorage.getItem("deviceId") || "";
@@ -96,6 +100,66 @@ const PageRoutes = () => {
         {
           path: "pap",
           element: <PAPListingWrapper />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: (
+        <AuthWrapper>
+          <SideNavLayout />
+        </AuthWrapper>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "category",
+          element: <CategoryListingWrapper />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: (
+        <AuthWrapper>
+          <SideNavLayout />
+        </AuthWrapper>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "coupon",
+          element: <CouponListingWrapper />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: (
+        <AuthWrapper>
+          <SideNavLayout />
+        </AuthWrapper>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "product",
+          element: <ProductListingWrapper />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: (
+        <AuthWrapper>
+          <SideNavLayout />
+        </AuthWrapper>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "order",
+          element: <OrderListingWrapper />,
         },
       ],
     },
