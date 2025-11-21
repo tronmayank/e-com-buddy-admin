@@ -1,7 +1,5 @@
 "use client";
 
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "src/store";
 import { useGetFaqsQuery, useAddFaqMutation } from "../../service/FaqServices";
 import { showToast } from "src/utils/showToaster";
 import { Formik, Form } from "formik";

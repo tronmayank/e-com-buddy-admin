@@ -11,7 +11,6 @@ import EditUserFormWrapper from "../Edit/EditUserFormWrapper";
 import { useFetchData } from "src/hooks/useFetchData";
 import { useFilterPagination } from "src/hooks/useFilterPagination";
 import { useGetUserQuery, useDeleteUserMutation } from "../../service/UserServices";
-import { showToast } from "src/utils/showToaster";
 
 type Props = {};
 
@@ -22,7 +21,6 @@ const UserListingWrapper = (props: Props) => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const [deleteApi] = useDeleteUserMutation();
 
   // api
   const { searchQuery, limit, page } = useFilterPagination();
