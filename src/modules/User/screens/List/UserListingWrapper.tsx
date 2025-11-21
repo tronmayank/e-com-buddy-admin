@@ -10,7 +10,7 @@ import AddUserFormWrapper from "../Add/AddUserFormWrapper";
 import EditUserFormWrapper from "../Edit/EditUserFormWrapper";
 import { useFetchData } from "src/hooks/useFetchData";
 import { useFilterPagination } from "src/hooks/useFilterPagination";
-import { useGetUserQuery, useDeleteUserMutation } from "../../service/UserServices";
+import { useGetUserQuery } from "../../service/UserServices";
 
 type Props = {};
 
