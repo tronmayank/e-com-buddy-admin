@@ -2,10 +2,15 @@ import {
   Icon,
   IconHome,
   IconUserCog,
-  IconArrowsSort,
-  IconHistory,
-  IconLayoutDistributeHorizontal,
-  IconUsers,
+  IconCategory,
+  IconBrandProducthunt,
+  IconPackage,
+  IconPigMoney,
+  IconTicket,
+  IconWorld,
+  IconQuestionMark,
+  IconArrowAutofitRight
+
 } from "@tabler/icons-react";
 import { PermissionType } from "./utils/authorization";
 import { getPermittedNavigations } from "./utils/getPermittedNavigations";
@@ -63,63 +68,20 @@ const navigation: (params?: {
             limit: "10",
           },
         },
-        {
-          title: "Web Info",
-          icon: IconUserCog,
-          path: "webinfo",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-        },
-        {
-          title: "FAQ",
-          icon: IconUserCog,
-          path: "faq",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-        },
-        {
-          title: "Terms & Condistions",
-          icon: IconUserCog,
-          path: "tac",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-        },
-        {
-          title: "Privacy & Policy",
-          icon: IconUserCog,
-          path: "pap",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-        },
+
         {
           title: "Category",
-          icon: IconUserCog,
+          icon: IconCategory,
           path: "category",
           searchParams: {
             page: "1",
             limit: "10",
           },
         },
-        {
-          title: "Coupon",
-          icon: IconUserCog,
-          path: "coupon",
-          searchParams: {
-            page: "1",
-            limit: "10",
-          },
-        },
+
         {
           title: "Product",
-          icon: IconUserCog,
+          icon: IconBrandProducthunt,
           path: "product",
           searchParams: {
             page: "1",
@@ -128,8 +90,62 @@ const navigation: (params?: {
         },
         {
           title: "Order",
-          icon: IconUserCog,
+          icon: IconPackage,
           path: "order",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "Expence",
+          icon: IconPigMoney,
+          path: "expence",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "Coupon",
+          icon: IconTicket,
+          path: "coupon",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "Web Info",
+          icon: IconWorld,
+          path: "webinfo",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "FAQ",
+          icon: IconQuestionMark,
+          path: "faq",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "Terms & Condistions",
+          icon: IconArrowAutofitRight,
+          path: "tac",
+          searchParams: {
+            page: "1",
+            limit: "10",
+          },
+        },
+        {
+          title: "Privacy & Policy",
+          icon: IconArrowAutofitRight,
+          path: "pap",
           searchParams: {
             page: "1",
             limit: "10",

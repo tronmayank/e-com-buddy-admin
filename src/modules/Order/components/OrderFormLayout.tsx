@@ -10,6 +10,7 @@ import ATMTextArea from "src/components/atoms/FormElements/ATMTextArea/ATMTextAr
 import { useFetchData } from "src/hooks/useFetchData";
 import { useGetProductsQuery } from "src/modules/Product/service/ProductServices";
 import { useState } from "react";
+import { ATMButton } from "src/components/atoms/ATMButton/ATMButton";
 
 type Props<T> = {
   formikProps: FormikProps<T>;
@@ -53,6 +54,8 @@ const OrderFormLayout = <T extends OrderFormValues | UpdateOrderFormValues>({
       title={type === "ADD" ? "Add Order" : "Update Order"}
       onClose={onClose}
       isSubmitting={isSubmitting}
+      size="medium"
+
     >
       {isLoading ? (
         <div className="flex justify-center items-center h-[200px]">
@@ -75,6 +78,54 @@ const OrderFormLayout = <T extends OrderFormValues | UpdateOrderFormValues>({
           {/* Coupon & Discounts */}
 
 
+          {/* Payment & Order Status */}
+          <h3 className="font-semibold text-lg">Payment Details</h3>
+          <div className="grid grid-cols-3 gap-3 border-t ">
+
+            <ATMSelect
+              name="paymentType"
+              label="Payment Type"
+              valueAccessKey='value'
+              value={(values as any).paymentType}
+              onChange={(val: any) => setFieldValue("paymentType", val?.value)}
+              options={[
+                { label: "Cash on Delivery", value: PaymentType.cod },
+                { label: "Online Payment", value: PaymentType.online },
+              ]}
+            />
+
+            <ATMSelect
+              name="paymentStatus"
+              label="Payment Status"
+              valueAccessKey='value'
+              value={(values as any).paymentStatus}
+              onChange={(val: any, actionMeta: any) => {
+                console.log(val, actionMeta)
+                setFieldValue("paymentStatus", val?.value || "")
+              }}
+              options={[
+                { label: "Pending", value: PaymentStatus.PENDING },
+                { label: "Confirmed", value: PaymentStatus.CONFIRM },
+                { label: "Canceled", value: PaymentStatus.CANCELED },
+              ]}
+            />
+
+            <ATMSelect
+              name="orderStatus"
+              label="Order Status"
+              valueAccessKey='value'
+              value={(values as any).orderStatus}
+              onChange={(val: any) => setFieldValue("orderStatus", val?.value)}
+              options={[
+                { label: "New Order", value: OrderStatus.NEW_ORDER },
+                { label: "Confirmed", value: OrderStatus.ORDER_CONFIRMED },
+                { label: "In Transit", value: OrderStatus.IN_TRANSIT },
+                { label: "Delivered", value: OrderStatus.DILIVERED },
+                { label: "Returned", value: OrderStatus.RETURNED },
+                { label: "Cancelled", value: OrderStatus.CANCELLED },
+              ]}
+            />
+          </div>
 
 
           {/* Billing Details */}
@@ -129,23 +180,25 @@ const OrderFormLayout = <T extends OrderFormValues | UpdateOrderFormValues>({
               />
 
             </div>
-            <ATMTextArea
-              name="billingDetails.address1"
-              value={(values as any).billingDetails?.address1 || ""}
-              onChange={(e) => setFieldValue("billingDetails.address1", e.target.value)}
-              label="Address 1"
-              variant="default"
-              placeholder="Enter address line 1"
-              onBlur={handleBlur}
-            />
-            <ATMTextArea
-              name="billingDetails.address2"
-              value={(values as any).billingDetails?.address2 || ""}
-              onChange={(e) => setFieldValue("billingDetails.address2", e.target.value)}
-              label="Address 2"
-              placeholder="Enter address line 2"
-              onBlur={handleBlur}
-            />
+            <div className="mt-5">
+              <ATMTextArea
+                name="billingDetails.address1"
+                value={(values as any).billingDetails?.address1 || ""}
+                onChange={(e) => setFieldValue("billingDetails.address1", e.target.value)}
+                label="Address 1"
+                variant="default"
+                placeholder="Enter address line 1"
+                onBlur={handleBlur}
+              />
+              <ATMTextArea
+                name="billingDetails.address2"
+                value={(values as any).billingDetails?.address2 || ""}
+                onChange={(e) => setFieldValue("billingDetails.address2", e.target.value)}
+                label="Address 2"
+                placeholder="Enter address line 2"
+                onBlur={handleBlur}
+              />
+            </div>
 
             <ATMTextArea
               name="billingDetails.orderNote"
@@ -187,52 +240,7 @@ const OrderFormLayout = <T extends OrderFormValues | UpdateOrderFormValues>({
               onBlur={handleBlur}
             /> */}
           </div>
-          {/* Payment & Order Status */}
-          <div className="grid grid-cols-3 gap-3 border-t pt-4">
-            <ATMSelect
-              name="paymentType"
-              label="Payment Type"
-              valueAccessKey='value'
-              value={(values as any).paymentType}
-              onChange={(val: any) => setFieldValue("paymentType", val?.value)}
-              options={[
-                { label: "Cash on Delivery", value: PaymentType.cod },
-                { label: "Online Payment", value: PaymentType.online },
-              ]}
-            />
 
-            <ATMSelect
-              name="paymentStatus"
-              label="Payment Status"
-              valueAccessKey='value'
-              value={(values as any).paymentStatus}
-              onChange={(val: any, actionMeta: any) => {
-                console.log(val, actionMeta)
-                setFieldValue("paymentStatus", val?.value || "")
-              }}
-              options={[
-                { label: "Pending", value: PaymentStatus.PENDING },
-                { label: "Confirmed", value: PaymentStatus.CONFIRM },
-                { label: "Canceled", value: PaymentStatus.CANCELED },
-              ]}
-            />
-
-            <ATMSelect
-              name="orderStatus"
-              label="Order Status"
-              valueAccessKey='value'
-              value={(values as any).orderStatus}
-              onChange={(val: any) => setFieldValue("orderStatus", val?.value)}
-              options={[
-                { label: "New Order", value: OrderStatus.NEW_ORDER },
-                { label: "Confirmed", value: OrderStatus.ORDER_CONFIRMED },
-                { label: "In Transit", value: OrderStatus.IN_TRANSIT },
-                { label: "Delivered", value: OrderStatus.DILIVERED },
-                { label: "Returned", value: OrderStatus.RETURNED },
-                { label: "Cancelled", value: OrderStatus.CANCELLED },
-              ]}
-            />
-          </div>
           {/* Products Field Array */}
           <FieldArray
             name="products"
@@ -298,7 +306,7 @@ const OrderFormLayout = <T extends OrderFormValues | UpdateOrderFormValues>({
                       placeholder="Enter description"
                       onBlur={handleBlur}
                     />
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-3 gap-3 mb-5">
                       {/* <ATMTextField
                         name={`products[${index}].variantName`}
                         value={product.variantName}
@@ -326,33 +334,39 @@ const OrderFormLayout = <T extends OrderFormValues | UpdateOrderFormValues>({
                         placeholder="Enter sale price"
                         onBlur={handleBlur}
                       />
-                    </div>
+                      <div className="p-5">
 
-                    <button
-                      type="button"
-                      onClick={() => arrayHelpers.remove(index)}
-                      className="text-sm text-red-600 underline"
-                    >
-                      Remove Product
-                    </button>
+                        <ATMButton
+                          type="button"
+                          onClick={() => arrayHelpers.remove(index)}
+                        // extraClasses="text-sm pt-5 text-red-600 underline"
+                        >
+                          Remove Product
+                        </ATMButton>
+                      </div>
+
+
+                    </div>
                   </div>
                 ))}
+                <div className="mb-10 w-1/2">
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    arrayHelpers.push({
-                      title: "",
-                      description: "",
-                      variantName: "",
-                      size: "",
-                      salePrice: 0,
-                    })
-                  }
-                  className="text-blue-600 text-sm underline"
-                >
-                  + Add Product
-                </button>
+                  <ATMButton
+                    type="button"
+                    color="neutral"
+                    onClick={() =>
+                      arrayHelpers.push({
+                        title: "",
+                        description: "",
+                        variantName: "",
+                        size: "",
+                        salePrice: 0,
+                      })
+                    }
+                  >
+                    + Add Product
+                  </ATMButton>
+                </div>
               </div>
             )}
           />

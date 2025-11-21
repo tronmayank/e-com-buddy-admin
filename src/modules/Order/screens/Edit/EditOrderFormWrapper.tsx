@@ -6,6 +6,7 @@ import OrderFormLayout from "../../components/OrderFormLayout";
 import { UpdateOrderFormValues, Order, OrderStatus } from "../../models/Order.model";
 import { useUpdateOrderMutation } from "../../service/OrderServices";
 import { showToast } from "src/utils/showToaster";
+import EditOrderFormLayout from "../../components/EditOrderFormLayout";
 
 type Props = {
   onClose: () => void;
@@ -20,14 +21,14 @@ const EditOrderFormWrapper = ({ onClose, selectedData }: Props) => {
     billingDetails: Yup.object().shape({
       name: Yup.string().required("Enter name"),
       phone: Yup.string().required("Enter phone"),
-      state: Yup.string().required("Enter state"),
-      city: Yup.string().required("Enter city"),
-      pincode: Yup.string().required("Enter pincode"),
-      address1: Yup.string().required("Enter address line 1"),
+      state: Yup.string().nullable(""),
+      city: Yup.string().nullable(""),
+      pincode: Yup.string().nullable(""),
+      address1: Yup.string().nullable(""),
       address2: Yup.string().nullable(),
       orderNote: Yup.string().nullable(),
     }),
-    orderStatus: Yup.mixed<OrderStatus>().oneOf(Object.values(OrderStatus)),
+    orderStatus: Yup.mixed<OrderStatus>().oneOf(Object.values(OrderStatus)).required("Select Order status"),
   });
 
   const handleSubmit = async (
@@ -36,9 +37,21 @@ const EditOrderFormWrapper = ({ onClose, selectedData }: Props) => {
   ) => {
     setSubmitting(true);
     try {
+      let newProducts: any = [];
+
+      values.products?.forEach((ele) => {
+        const { _id, ...rest } = ele; // destructure _id out
+        newProducts.push(rest);        // push the remaining fields
+      });
+
+
       const payload = {
         billingDetails: values.billingDetails,
         orderStatus: values.orderStatus,
+        products: newProducts,
+        orderAmount: values.orderAmount,
+        orderNumber: values.orderNumber
+
       };
 
       const res: any = await updateOrder({
@@ -68,7 +81,7 @@ const EditOrderFormWrapper = ({ onClose, selectedData }: Props) => {
     >
       {(formikProps) => (
         <Form>
-          <OrderFormLayout formikProps={formikProps} onClose={onClose} type="EDIT" />
+          <EditOrderFormLayout formikProps={formikProps} onClose={onClose} type="EDIT" />
         </Form>
       )}
     </Formik>

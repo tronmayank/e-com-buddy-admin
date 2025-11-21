@@ -11,6 +11,7 @@ import CategorySlice from "./modules/Category/slice/CategorySlice";
 import CouponSlice from "./modules/Coupon/slice/CouponSlice";
 import ProductSlice from "./modules/Product/slice/ProductSlice";
 import OrderSlice from "./modules/Order/slice/OrderSlice";
+import ExpenceSlice from "./modules/Expence/slice/ExpenceSlice";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     coupon: CouponSlice,
     product: ProductSlice,
     order: OrderSlice,
+    expence: ExpenceSlice,
 
     [apiSlice.reducerPath]: apiSlice.reducer,
     [fileExplorerSlice.reducerPath]: fileExplorerSlice.reducer,

@@ -62,7 +62,7 @@ export const orderApi = apiSlice.injectEndpoints({
       }),
     }),
 
-    // Change Order Status (e.g., Pending / Completed / Cancelled)
+    // Change Order Status
     changeOrderStatus: builder.mutation<{ status: boolean; message: string }, { id: string; status: string }>({
       invalidatesTags: ["order"],
       query: ({ id, status }) => ({
@@ -71,6 +71,33 @@ export const orderApi = apiSlice.injectEndpoints({
         body: { status },
       }),
     }),
+
+    getOrderStats: builder.query<
+      {
+        totalSales: number;
+        totalOrders: number;
+        totalExpense: number;
+        ordersByStatus: { _id: string; count: number }[];
+        monthlySales: {
+          _id: { year: number; month: number };
+          totalSales: number;
+          totalOrders: number;
+        }[];
+        profit: number;
+      },
+      { startDate?: string; endDate?: string }
+    >({
+      providesTags: ["order"],
+      query: (params) => ({
+        url: "/order/stats",
+        method: "GET",
+        params,
+      }),
+
+      // ⭐ Flatten API response
+      transformResponse: (response: any) => response.data,
+    }),
+
   }),
 });
 
@@ -81,4 +108,5 @@ export const {
   useUpdateOrderMutation,
   useDeleteOrderMutation,
   useChangeOrderStatusMutation,
+  useGetOrderStatsQuery,
 } = orderApi;

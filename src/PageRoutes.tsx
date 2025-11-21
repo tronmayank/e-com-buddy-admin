@@ -14,6 +14,8 @@ import CategoryListingWrapper from "./modules/Category/screens/List/CategoryList
 import CouponListingWrapper from "./modules/Coupon/screens/List/CouponListingWrapper";
 import ProductListingWrapper from "./modules/Product/screens/List/ProductListingWrapper";
 import OrderListingWrapper from "./modules/Order/screens/List/OrderListingWrapper";
+import ExpenceListingWrapper from "./modules/Expence/screens/List/ExpenceListingWrapper";
+import DashBoardWrapper from "./modules/Dashboard/DashboardWrapper";
 
 const PageRoutes = () => {
   const deviceId = localStorage.getItem("deviceId") || "";
@@ -27,6 +29,21 @@ const PageRoutes = () => {
     {
       path: "/login",
       element: <LoginFormWrapper />,
+    },
+    {
+      path: "/",
+      element: (
+        <AuthWrapper>
+          <SideNavLayout />
+        </AuthWrapper>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "",
+          element: <DashBoardWrapper />,
+        },
+      ],
     },
     {
       path: "/",
@@ -160,6 +177,21 @@ const PageRoutes = () => {
         {
           path: "order",
           element: <OrderListingWrapper />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: (
+        <AuthWrapper>
+          <SideNavLayout />
+        </AuthWrapper>
+      ),
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "expence",
+          element: <ExpenceListingWrapper />,
         },
       ],
     },

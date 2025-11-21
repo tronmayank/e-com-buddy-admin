@@ -71,9 +71,10 @@ const ATMAppHeader = (props: Props) => {
         >
           <IconMenu2 />
         </button>
-        <div className="font-bold text-primary-main">
-          <img src="/main-logo.svg" alt="logo" className="h-6" />{" "}
+        <div className="font-bold text-primary-main text-xl text-[#e93d6e]">
+          nirasooti
         </div>
+
       </div>
 
       {/* User Profile */}

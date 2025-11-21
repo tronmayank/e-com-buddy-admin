@@ -3,17 +3,24 @@ import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Variant } from "../ATMNumberField/ATMNumberField";
-import { ErrorMessage } from "formik";
+import { ErrorMessage, useFormikContext } from "formik";
 import ATMFieldError from "../../ATMFieldError/ATMFieldError";
 import ATMFieldLabel from "../../ATMFieldLabel/ATMFieldLabel";
 import { Size, getHeight } from "../../../../utils";
+
+function useOptionalFormikContext() {
+  try {
+    return useFormikContext();
+  } catch {
+    return null;
+  }
+}
 
 type Props = {
   name: string;
   label: string;
   value: Date | null;
   onChange: (value: any) => void;
-
   dateFormat?: string;
   isClearable?: boolean;
   closeOnScroll?: boolean;
@@ -22,21 +29,9 @@ type Props = {
   shouldCloseOnSelect?: boolean;
   readOnly?: boolean;
   excludeDates?: Date[];
-  excludeDateIntervals?: {
-    start: Date;
-    end: Date;
-  }[];
-  holidays?: {
-    date: string;
-    holidayName: string;
-  }[];
-  highlightDates?: Array<
-    | {
-        [className: string]: Date[];
-      }
-    | Date
-  >;
-
+  excludeDateIntervals?: { start: Date; end: Date }[];
+  holidays?: { date: string; holidayName: string }[];
+  highlightDates?: Array<{ [className: string]: Date[] } | Date>;
   placeholder?: string;
   className?: string;
   fullWidth?: boolean;
@@ -57,7 +52,6 @@ const ATMDatePicker = ({
   label,
   value,
   onChange,
-
   dateFormat = "dd MMM yyyy",
   isClearable = true,
   closeOnScroll = true,
@@ -78,14 +72,12 @@ const ATMDatePicker = ({
   variant = "default",
   children,
   size = "small",
-
-  isTouched = true,
-  errorMessage = "",
-  disableErrorMessage = false,
 }: Props) => {
   const [focused, setFocused] = useState(false);
-
   const inputRef = useRef<any>(null);
+
+  // Safe Formik detection (no hook rule violations)
+  const formik = useOptionalFormikContext();
 
   const isOutlined = variant === "outlined";
 
@@ -110,21 +102,19 @@ const ATMDatePicker = ({
           inputRef?.current?.focus();
           !disabled && setFocused(true);
         }}
-        className={`relative ${getHeight(size)} rounded flex flex-col ${
-          isOutlined && "justify-end"
-        } ${disabled && "opacity-60"} border  ${
-          focused && !disabled ? "border-primary" : "border-neutral-80"
-        }`}
+        className={`relative ${getHeight(size)} rounded flex flex-col ${isOutlined && "justify-end"
+          } ${disabled && "opacity-60"} border ${focused && !disabled ? "border-primary" : "border-neutral-80"
+          }`}
       >
         <label
-          className={`absolute left-2 transition-all duration-200 ${
-            focused || value
+          className={`absolute left-2 transition-all duration-200 ${focused || value
               ? "top-0 text-primary font-medium text-xs"
               : "top-1/2 transform -translate-y-1/2 text-xs text-gray-400 cursor-text"
-          }  ${!isOutlined && "hidden"} `}
+            } ${!isOutlined && "hidden"} `}
         >
           {label}
         </label>
+
         <DatePicker
           selected={value}
           onChange={handleChange}
@@ -148,19 +138,23 @@ const ATMDatePicker = ({
           disabledKeyboardNavigation={true}
           showPopperArrow={false}
           popperPlacement="top-start"
-          className={`rounded-md w-full bg-inherit focus:outline-none px-2 py-1 ${className} placeholder:text-xs ${
-            !isOutlined && "h-full"
-          }`}
+          className={`rounded-md w-full bg-inherit focus:outline-none px-2 py-1 ${className} placeholder:text-xs ${!isOutlined && "h-full"
+            }`}
         >
           {children}
         </DatePicker>
       </div>
+
       {helperText && isValid && (
-        <p className="absolute text-sm text-slate-500"> {helperText} </p>
+        <p className="absolute text-sm text-slate-500">{helperText}</p>
       )}
-      <ErrorMessage name={name}>
-        {(errorMessage) => <ATMFieldError> {errorMessage} </ATMFieldError>}
-      </ErrorMessage>
+
+      {/* Only show ErrorMessage if inside Formik */}
+      {formik && (
+        <ErrorMessage name={name}>
+          {(msg) => <ATMFieldError>{msg}</ATMFieldError>}
+        </ErrorMessage>
+      )}
     </div>
   );
 };

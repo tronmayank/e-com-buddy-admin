@@ -96,7 +96,10 @@ export type UpdateOrderFormValues = {
   _id?: string;
   billingDetails?: BillingDetails;
   orderStatus?: OrderStatus;
-  products?: OrderProduct[];
+  products: OrderProduct[];
+  orderAmount: number;
+  orderNumber: number;
+
 };
 
 
