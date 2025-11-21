@@ -5,15 +5,12 @@ import { AppDispatch } from "src/store";
 import { useGetFaqsQuery, useAddFaqMutation } from "../../service/FaqServices";
 import { showToast } from "src/utils/showToaster";
 import { Formik, Form } from "formik";
-import { FaqFormValues, Faq } from "../../models/Faq.model";
+import { FaqFormValues } from "../../models/Faq.model";
 import FaqFormLayout from "../../component/FaqFormLayout";
 
-const initialValues: FaqFormValues = {
-  faqList: [],
-};
+
 
 const FaqPage = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const { data, isLoading, isSuccess, isError } = useGetFaqsQuery("");
   const [updateFaq, { isLoading: isUpdating }] = useAddFaqMutation();
 

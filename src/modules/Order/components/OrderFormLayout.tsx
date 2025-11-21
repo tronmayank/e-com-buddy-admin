@@ -34,7 +34,7 @@ const OrderFormLayout = <T extends OrderFormValues | UpdateOrderFormValues>({
   console.log("values", values)
   const [searchQuery, setSearcQuery] = useState("")
   const [varients, setVarients] = useState([])
-  const { data, totalData, totalPages } = useFetchData(
+  const { data } = useFetchData(
     useGetProductsQuery,
     {
       body: {

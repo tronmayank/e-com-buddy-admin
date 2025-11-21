@@ -3,7 +3,7 @@
 import { Formik, FormikHelpers, Form } from "formik";
 import { UpdateExpenseFormValues, Expense } from "../../models/Expence.model";
 import ExpenseFormLayout from "../../components/ExpenceFormLayout";
-import { object, string, number, boolean } from "yup";
+import { object, string, number } from "yup";
 import {
   useGetExpenseByIdQuery,
   useUpdateExpenseMutation,

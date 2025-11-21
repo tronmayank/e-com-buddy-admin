@@ -21,7 +21,6 @@ const initialValues: WebInfoFormValues = {
 
 
 const WebInfoPage = () => {
-  const dispatch = useDispatch<AppDispatch>();
 
   const { data, isLoading, isSuccess, isError } = useGetWebInfoQuery("");
   const [updateWebInfo, { isLoading: isUpdating }] = useAddWebInfoMutation();

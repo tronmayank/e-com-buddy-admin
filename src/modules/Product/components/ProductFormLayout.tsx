@@ -44,35 +44,7 @@ const ProductFormLayout = <T extends ProductFormValues | UpdateProductFormValues
   const isProductFormValues = (v: any): v is ProductFormValues =>
     "title" in v && "description" in v && "variant" in v;
 
-  // ✅ File upload handler (multiple)
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files?.length) return;
 
-    try {
-      setUploading(true);
-      const uploadedUrls: string[] = [];
-
-      for (const file of Array.from(files)) {
-        const formData = new FormData();
-        formData.append("file", file);
-
-        const result = await uploadFile(formData).unwrap();
-        const url = result?.data?.url;
-        if (url) uploadedUrls.push(url);
-      }
-
-      // Append new image URLs to existing ones
-      setFieldValue("images", [...((values as any).images || []), ...uploadedUrls]);
-      showToast("success", "Image(s) uploaded successfully");
-    } catch (err) {
-      console.error("File upload failed", err);
-      showToast("error", "File upload failed");
-    } finally {
-      setUploading(false);
-      e.target.value = "";
-    }
-  };
 
   return (
     <MOLFormDialog

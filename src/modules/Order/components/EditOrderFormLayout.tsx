@@ -9,8 +9,7 @@ import ATMTextArea from "src/components/atoms/FormElements/ATMTextArea/ATMTextAr
 import {
     OrderFormValues,
     UpdateOrderFormValues,
-    PaymentType,
-    PaymentStatus,
+
     OrderStatus,
 } from "../models/Order.model";
 

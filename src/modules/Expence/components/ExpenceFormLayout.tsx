@@ -133,11 +133,13 @@ const ExpenseFormLayout = <
               <a
                 href={(values as any).receipt}
                 target="_blank"
+                rel="noreferrer"
                 className="text-blue-600 text-sm underline"
               >
                 View Uploaded Receipt
               </a>
             )}
+
           </div>
 
         </div>

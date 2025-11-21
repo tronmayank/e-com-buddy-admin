@@ -80,6 +80,7 @@ const ExpenseListingWrapper = () => {
           <a
             href={row.receipt}
             target="_blank"
+            rel="noreferrer"
             className="text-blue-600 underline"
           >
             View

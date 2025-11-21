@@ -16,7 +16,6 @@ import {
   useDeleteOrderMutation,
 } from "../../service/OrderServices";
 import { showToast } from "src/utils/showToaster";
-import ATMSelect from "src/components/atoms/FormElements/ATMSelect/ATMSelect";
 
 const OrderListingWrapper = () => {
   const [selectedData, setSelectedData] = useState<Order | null>(null);
@@ -29,7 +28,7 @@ const OrderListingWrapper = () => {
   const [orderStatus, setOrderStatus] = useState("")
 
   // Pagination & search
-  const { searchQuery, limit, page, appliedFilters } = useFilterPagination();
+  const { searchQuery, limit, page } = useFilterPagination();
   const { data, isLoading, totalData, totalPages } = useFetchData(
     useGetOrdersQuery,
     {

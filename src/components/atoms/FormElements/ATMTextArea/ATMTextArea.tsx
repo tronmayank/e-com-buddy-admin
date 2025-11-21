@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { Variant } from "../ATMNumberField/ATMNumberField";
 import ATMFieldLabel from "../../ATMFieldLabel/ATMFieldLabel";
-import ATMFieldError from "../../ATMFieldError/ATMFieldError";
 
 interface TextFieldProps {
   name?: string;

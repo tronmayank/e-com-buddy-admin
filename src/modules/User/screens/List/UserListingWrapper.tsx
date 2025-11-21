@@ -39,21 +39,6 @@ const UserListingWrapper = (props: Props) => {
     }
   );
 
-  // Delete
-  const handleDelete = (item: User, closeDialog: () => void) => {
-    deleteApi(item?._id).then((res: any) => {
-      if (res?.error) {
-        showToast("error", res?.error?.data?.message);
-      } else {
-        if (res?.data?.status) {
-          showToast("success", res?.data?.message);
-          closeDialog();
-        } else {
-          showToast("error", res?.data?.message);
-        }
-      }
-    });
-  };
 
   const tableHeaders: TableHeader<User>[] = [
 

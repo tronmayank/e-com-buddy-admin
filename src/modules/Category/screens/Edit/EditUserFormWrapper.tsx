@@ -56,28 +56,6 @@ const EditCategoryFormWrapper = ({ id, onClose }: Props) => {
     }
   };
 
-  // File upload handler
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const result = await uploadFile(formData).unwrap();
-      const url = result?.data?.url;
-
-      if (url) {
-        initialValues.image = url; // temporary update
-      }
-    } catch (err: any) {
-      console.error("File upload failed", err);
-      showToast("error", "File upload failed");
-    } finally {
-      e.target.value = "";
-    }
-  };
 
   return (
     <Formik<CategoryFormValues>

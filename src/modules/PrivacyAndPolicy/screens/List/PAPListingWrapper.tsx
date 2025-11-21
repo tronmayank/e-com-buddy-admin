@@ -7,12 +7,7 @@ import { showToast } from "src/utils/showToaster";
 import { Formik, Form, Field } from "formik";
 import { PapFormValues } from "../../models/PAP.model";
 
-const initialValues: PapFormValues = {
-  papData: "",
-};
-
 const PapPage = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const { data, isLoading, isSuccess, isError } = useGetPapQuery("");
   const [updatePap, { isLoading: isUpdating }] = useAddPapMutation();
 

@@ -8,7 +8,6 @@ import { Formik, Form, Field } from "formik";
 import { TacFormValues } from "../../models/TAC.model";
 
 const TacPage = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const { data, isLoading, isSuccess, isError } = useGetTacQuery("");
   const [updateTac, { isLoading: isUpdating }] = useAddTacMutation();
 
